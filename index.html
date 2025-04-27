@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas Art Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://fav.farm/✅" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="canvas.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="controls">
+      <div class="app-title">
+        <h1>Canvas Studio</h1>
+        <p>Create colorful artwork with your mouse</p>
+      </div>
+      
+      <div class="control-panel">
+        <div class="control-group">
+          <label>Brush Size</label>
+          <div class="slider-container">
+            <input type="range" id="brush-size" min="1" max="100" value="10" class="slider">
+            <div class="value-display" id="size-value">10px</div>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <label>Color Mode</label>
+          <div class="toggle-container">
+            <button class="toggle-btn active" id="rainbow-mode">Rainbow</button>
+            <button class="toggle-btn" id="solid-mode">Solid Color</button>
+          </div>
+        </div>
+        
+        <div class="control-group" id="color-picker-container">
+          <label>Brush Color</label>
+          <input type="color" id="color-picker" value="#4A90E2">
+        </div>
+        
+        <div class="control-group">
+          <label>Special Effects</label>
+          <div class="toggle-container">
+            <button class="toggle-btn" id="toggle-glow">Glow</button>
+            <button class="toggle-btn" id="toggle-shadow">Shadow</button>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <button id="clear-canvas" class="action-btn">Clear Canvas</button>
+          <button id="save-canvas" class="action-btn">Save Artwork</button>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>Click and drag to draw. Hold shift for straight lines.</p>
+      </div>
+    </div>
+    
+    <div class="canvas-container">
+      <canvas id="draw" width="800" height="800"></canvas>
+      <div class="canvas-overlay">
+        <div class="brush-preview" id="brush-preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="canvas.js"></script>
+</body>
+</html>

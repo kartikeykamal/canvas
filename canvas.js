@@ -128,7 +128,7 @@ function updateBrushPreviewPosition(e) {
   brushPreview.style.transform = 'translate(-50%, -50%)';
 }
 
-// Event listeners for drawing
+// Event listeners for drawing (mouse)
 canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
@@ -155,7 +155,29 @@ canvas.addEventListener('mouseout', () => {
   brushPreview.style.opacity = '0';
 });
 
-canvas.addEventListener('mouseover', () => {
+// Touch event listeners for drawing
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // Prevent scrolling
+  isDrawing = true;
+  const touch = e.touches[0];
+  [lastX, lastY] = [touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top];
+  [startX, startY] = [lastX, lastY]; // Store start position for shift-line
+  updateBrushPreviewPosition(touch);
+  brushPreview.style.opacity = '0.5';
+});
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault(); // Prevent scrolling
+  const touch = e.touches[0];
+  updateBrushPreviewPosition(touch);
+  draw(touch);
+});
+
+canvas.addEventListener('touchend', () => {
+  isDrawing = false;
+  // Reset starting point
+  startX = 0;
+  startY = 0;
   brushPreview.style.opacity = '0.3';
 });
 
